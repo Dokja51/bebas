@@ -104,11 +104,9 @@
               href="#"
               @click.prevent="selected = (selected === 'Dashboard' ? '':'Dashboard')"
               class="menu-item group"
-              :class=" (selected === 'Dashboard') || (page === 'ecommerce' || page === 'analytics' || page === 'marketing' || page === 'crm' || page === 'stocks') ? 'menu-item-active' : 'menu-item-inactive'"
-            >
+:class="selected === 'Dashboard' ? 'menu-item-active' : 'menu-item-inactive'"            >
               <svg
-                :class="(selected === 'Dashboard') || (page === 'ecommerce' || page === 'analytics' || page === 'marketing' || page === 'crm' || page === 'stocks') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
-                width="24"
+:class="selected === 'Dashboard' ? 'menu-item-icon-active' : 'menu-item-icon-inactive'"                width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
