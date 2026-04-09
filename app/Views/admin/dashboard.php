@@ -1,4 +1,4 @@
-<?= $this->extend('templates/index'); ?>
+<?= $this->extend('part/index'); ?>
 <?= $this->section('content'); ?>
         <!-- ===== Main Content Start ===== -->
         <main>

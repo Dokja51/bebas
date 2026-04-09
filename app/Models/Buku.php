@@ -19,10 +19,11 @@ class Buku extends Model
         'penulis',
         'penerbit',
         'tahun_terbit',
-        'stok'
+        'stok',
+        'cover'
     ];
 
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $createdField  = 'created_at';
 
     public function getBukuWithKategori()
@@ -43,4 +44,6 @@ class Buku extends Model
             ->get()
             ->getRowArray();
     }
+
+    
 }
