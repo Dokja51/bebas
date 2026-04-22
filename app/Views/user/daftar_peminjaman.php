@@ -199,11 +199,11 @@
                     />
                   </svg>
                   Kembalikan Buku
-                </button></form><?php endforeach; ?>
+                </button></form>
               </p>
             </div>
           </td>
-        </tr>
+        </tr><?php endforeach; ?>
       </tbody>
     </table>
   </div>

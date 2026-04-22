@@ -15,6 +15,7 @@ class Peminjaman extends BaseController
     ->join('buku', 'buku.id = transaksi.buku_id')
     ->join('kategori', 'kategori.id = buku.kategori_id')
     ->where('transaksi.user_id', $user->id)
+    ->where('transaksi.status', 'dipinjam')
     ->orderBy('transaksi.tanggal_pinjam', 'DESC')
     ->findAll();
 
@@ -31,25 +32,47 @@ class Peminjaman extends BaseController
     public function store()
 {
     $peminjamanModel = new \App\Models\Peminjaman();
+    $bukuModel = new \App\Models\Buku();
 
-    $user = auth()->user(); // Ambil user yang login
+    $user = auth()->user();
+    $buku_id = $this->request->getPost('buku_id');
 
+    // Ambil data buku
+    $buku = $bukuModel->find($buku_id);
+
+    // ❌ Kalau buku tidak ada
+    if (!$buku) {
+        return redirect()->back()->with('error', 'Buku tidak ditemukan');
+    }
+
+    // ❌ Kalau stok habis
+    if ($buku['stok'] <= 0) {
+        return redirect()->back()->with('error', 'Stok buku habis, tidak bisa dipinjam!');
+    }
+
+    // ✅ Simpan transaksi
     $peminjamanModel->save([
-        'user_id'        => $user->id, // ID dari user login
-        'buku_id'        => $this->request->getPost('buku_id'),
+        'user_id'        => $user->id,
+        'buku_id'        => $buku_id,
         'tanggal_pinjam' => date('Y-m-d'),
         'status'         => 'dipinjam'
     ]);
 
-    return redirect()->to('/daftar_peminjaman')->with('success', 'Buku berhasil dipinjam');
+    // ✅ Kurangi stok
+    $bukuModel->update($buku_id, [
+        'stok' => $buku['stok'] - 1
+    ]);
+
+    return redirect()->to('/daftar_peminjaman')
+        ->with('success', 'Buku berhasil dipinjam');
 }
 
     public function kembalikan()
 {
-    $transaksi_id = $this->request->getPost('transaksi_id');  // ambil transaksi_id
+    $transaksi_id = $this->request->getPost('transaksi_id');
     $peminjamanModel = new \App\Models\Peminjaman();
 
-    $peminjaman = $peminjamanModel->find($transaksi_id); // cari transaksi
+    $peminjaman = $peminjamanModel->find($transaksi_id);
 
     if (!$peminjaman) {
         return redirect()->back()->with('error', 'Transaksi tidak ditemukan.');

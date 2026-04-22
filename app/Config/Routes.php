@@ -22,6 +22,13 @@ $routes->post('/store_kategori', 'Buku::storeKategori');
 $routes->get('/kelola_user', 'User::index');
 $routes->get('/kelola_trans', 'Transaksi::index');
 
+$routes->get('/user', 'User::index');
+
+$routes->post('/hapus_user', 'User::delete');
+
+$routes->get('/edit_user/(:num)', 'User::edit/$1');
+$routes->post('/update_user/(:num)', 'User::update/$1');
+
 });
 // USER
 $routes->get('/daftar_buku', 'Buku::daftarBuku');

@@ -97,9 +97,10 @@
                           </a>
 
                           <!-- DELETE -->
-                          <form action="/hapus_user/<?= $u['id']; ?>" method="post"
+                          <form action="/hapus_user" method="post"
                             onsubmit="return confirm('Yakin hapus user ini?')">
                             <?= csrf_field(); ?>
+                            <input type="hidden" name="id" value="<?= $u['id']; ?>">
                             <button type="submit"
                               class="inline-flex items-center gap-2 rounded-lg bg-red-600 px-3 py-2 text-sm text-white hover:bg-red-700">
                               Hapus

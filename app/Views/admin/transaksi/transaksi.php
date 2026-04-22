@@ -11,38 +11,14 @@
     x-text="pageName"
   ></h2>
 
-  <nav>
-    <ol class="flex items-center gap-1.5">
-      <li>
-        <a
-          class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
-          href="index.html"
-        >
-          Home
-          <svg
-            class="stroke-current"
-            width="17"
-            height="16"
-            viewBox="0 0 17 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366"
-              stroke=""
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
-      </li>
-      <li
-        class="text-sm text-gray-800 dark:text-white/90"
-        x-text="pageName"
-      ></li>
-    </ol>
-  </nav>
+  <form action="/create_buku" method="get">
+                  <button
+                            type="submit"
+                            class="btn btn-primary btn-add-event flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
+                          >
+                            Tambah Buku
+                          </button>
+                  </form>
 </div>
 </div>
             <!-- Breadcrumb End -->
@@ -57,10 +33,12 @@
                   >
                     Basic Table 1
                   </h3>
+                  
                 </div>
                 <div
                   class="p-5 border-t border-gray-100 dark:border-gray-800 sm:p-6"
                 >
+                
                   <!-- ====== Table Six Start -->
                   <div
   class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
@@ -71,63 +49,105 @@
       <thead>
         <tr class="border-b border-gray-100 dark:border-gray-800">
           <th class="px-5 py-3 sm:px-6">
-  <p class="font-medium text-gray-500 text-theme-xs">Nama Siswa</p>
-</th>
-
-<th class="px-5 py-3 sm:px-6">
-  <p class="font-medium text-gray-500 text-theme-xs">Judul Buku</p>
-</th>
-
-<th class="px-5 py-3 sm:px-6">
-  <p class="font-medium text-gray-500 text-theme-xs">Kategori</p>
-</th>
-
-<th class="px-5 py-3 sm:px-6">
-  <p class="font-medium text-gray-500 text-theme-xs">Tanggal Pinjam</p>
-</th>
-
-<th class="px-5 py-3 sm:px-6">
-  <p class="font-medium text-gray-500 text-theme-xs">Status</p>
-</th>
+            <div class="flex items-center">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                Nama Siswa
+              </p>
+            </div>
+          </th>
+          <th class="px-5 py-3 sm:px-6">
+            <div class="flex items-center">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                Judul Buku
+              </p>
+            </div>
+          </th>
+          <th class="px-5 py-3 sm:px-6">
+            <div class="flex items-center">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                Kategori
+              </p>
+            </div>
+          </th>
+          <th class="px-5 py-3 sm:px-6">
+            <div class="flex items-center">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                Tanggal Pinjam
+              </p>
+            </div>
+          </th>
+          <th class="px-5 py-3 sm:px-6">
+            <div class="flex items-center">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                Status
+              </p>
+            </div>
+          </th>
         </tr>
       </thead>
       <!-- table header end -->
       <!-- table body start -->
-    <tbody class="divide-y divide-gray-100">
-<?php foreach ($transaksi as $t): ?>
-<tr>
+      <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
 
-  <!-- Nama Siswa -->
-  <td class="px-5 py-4 sm:px-6">
-    <?= $t['nama_siswa']; ?>
-  </td>
-
-  <!-- Judul Buku -->
-  <td class="px-5 py-4 sm:px-6">
-    <?= $t['judul']; ?>
-  </td>
-
-  <!-- Kategori -->
-  <td class="px-5 py-4 sm:px-6">
-    <?= $t['nama_kategori']; ?>
-  </td>
-
-  <!-- Tanggal -->
-  <td class="px-5 py-4 sm:px-6">
-    <?= $t['tanggal_pinjam']; ?>
-  </td>
-
-  <!-- Status -->
-  <td class="px-5 py-4 sm:px-6">
-    <span class="px-2 py-1 text-xs rounded-lg 
-      <?= $t['status'] == 'dipinjam' ? 'bg-yellow-100 text-yellow-700' : 'bg-green-100 text-green-700'; ?>">
-      <?= $t['status']; ?>
-    </span>
-  </td>
-
-</tr>
-<?php endforeach; ?>
-</tbody>
+        <?php foreach ($transaksi as $t): ?>
+        <tr>
+          <td class="px-5 py-4 sm:px-6">
+            <div class="flex items-center">
+              <div class="flex items-center gap-3">
+                <div>
+                  <span
+                    class="block font-medium text-gray-500 text-theme-sm dark:text-gray-400"
+                  >
+                    <?= $t['nama_siswa']; ?>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                <?= $t['judul']; ?>
+              </p>
+            </div>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                <?= $t['nama_kategori']; ?>
+              </p>
+            </div>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                <?= $t['tanggal_pinjam']; ?>
+              </p>
+            </div>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                <?php if ($t['status'] == 'dipinjam'): ?>
+    <span class="text-yellow-500">Dipinjam</span>
+<?php else: ?>
+    <span class="text-green-500">Dikembalikan</span>
+<?php endif; ?>
+              </p>
+            </div>
+          </td>
+        </tr><?php endForeach; ?>
+      </tbody>
     </table>
   </div>
 </div>

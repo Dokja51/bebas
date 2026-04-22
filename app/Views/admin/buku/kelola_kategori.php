@@ -57,6 +57,11 @@
                   >
                     Basic Table 1
                   </h3>
+
+                  <a href="<?= base_url('create_user') ?>"
+        class="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600">
+        + Tambah User
+      </a>
                 </div>
                 <div
                   class="p-5 border-t border-gray-100 dark:border-gray-800 sm:p-6"

@@ -11,38 +11,14 @@
     x-text="pageName"
   ></h2>
 
-  <nav>
-    <ol class="flex items-center gap-1.5">
-      <li>
-        <a
-          class="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
-          href="index.html"
-        >
-          Home
-          <svg
-            class="stroke-current"
-            width="17"
-            height="16"
-            viewBox="0 0 17 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6.0765 12.667L10.2432 8.50033L6.0765 4.33366"
-              stroke=""
-              stroke-width="1.2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
-      </li>
-      <li
-        class="text-sm text-gray-800 dark:text-white/90"
-        x-text="pageName"
-      ></li>
-    </ol>
-  </nav>
+  <form action="/create_buku" method="get">
+                  <button
+                            type="submit"
+                            class="btn btn-primary btn-add-event flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
+                          >
+                            Tambah Buku
+                          </button>
+                  </form>
 </div>
 </div>
             <!-- Breadcrumb End -->
@@ -57,14 +33,7 @@
                   >
                     Basic Table 1
                   </h3>
-                  <form action="/create_buku" method="get">
-                  <button
-          type="submit"
-          class="btn btn-primary btn-add-event flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
-        >
-          Tambah Buku
-        </button>
-</form>
+                  
                 </div>
                 <div
                   class="p-5 border-t border-gray-100 dark:border-gray-800 sm:p-6"
