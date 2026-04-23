@@ -7,12 +7,12 @@
     <!-- Header -->
     <div class="mb-6 flex items-center justify-between">
       <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90">
-        Kelola User
+        Kelola Penerbit
       </h2>
 
-      <a href="<?= base_url('create_user') ?>"
+      <a href="<?= base_url('create_penerbit') ?>"
         class="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600">
-        + Tambah User
+        + Tambah Penerbit
       </a>
     </div>
 
@@ -21,7 +21,7 @@
         
         <div class="px-5 py-4 sm:px-6 sm:py-5">
           <h3 class="text-base font-medium text-gray-800 dark:text-white/90">
-            Data User
+            Data Penerbit
           </h3>
         </div>
 
@@ -49,25 +49,7 @@
               <p
                 class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
               >
-                Email
-              </p>
-            </div>
-          </th>
-          <th class="px-5 py-3 sm:px-6">
-            <div class="flex items-center">
-              <p
-                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-              >
-                Username
-              </p>
-            </div>
-          </th>
-          <th class="px-5 py-3 sm:px-6">
-            <div class="flex items-center">
-              <p
-                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
-              >
-                Role
+                Nama Penerbit
               </p>
             </div>
           </th>
@@ -88,8 +70,8 @@
       <tbody class="divide-y divide-gray-100 dark:divide-gray-800">
         
         <?php $no = 1; ?>
-        <?php if (!empty($users)): ?>
-                    <?php foreach ($users as $u): ?>
+        <?php if (!empty($penerbit)): ?>
+                    <?php foreach ($penerbit as $u): ?>
         <tr>
 
         <td class="px-5 py-4 sm:px-6">
@@ -106,7 +88,7 @@
                   <span
                     class="block font-medium text-gray-500 text-theme-sm dark:text-gray-400"
                   >
-                    <?= $u['email']; ?>
+                    <?= $u['nama_penerbit']; ?>
                   </span>
                 </div>
               </div>
@@ -115,25 +97,7 @@
           <td class="px-5 py-4 sm:px-6">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                <?= $u['username']; ?>
-              </p>
-            </div>
-          </td>
-          <td class="px-5 py-4 sm:px-6">
-            <div class="flex items-center">
-              <?php
-                          $role = $u['group'] ?? 'user';
-                          $color = ($role == 'admin') ? 'bg-red-500' : 'bg-blue-500';
-                        ?>
-                        <span class="px-2 py-1 text-xs text-white rounded <?= $color ?>">
-                          <?= ucfirst($role); ?>
-                        </span>
-            </div>
-          </td>
-          <td class="px-5 py-4 sm:px-6">
-            <div class="flex items-center">
-              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-            <a href="/edit_user/<?= $u['id']; ?>"
+            <a href="/edit_penerbit/<?= $u['id_penerbit']; ?>"
                   class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs ring-1 ring-gray-300 transition hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03]"
                 >
                   <svg
@@ -153,8 +117,8 @@
                   </svg>
                   edit
              </a>
-                <form action="/kelola_user/delete/<?= $u['id']; ?>" method="post"
-                  onsubmit="return confirm('Yakin hapus user ini?')">
+                <form action="/kelola_penerbit/delete/<?= $u['id_penerbit']; ?>" method="post"
+                  onsubmit="return confirm('Yakin hapus penerbit ini?')">
 
                   <?= csrf_field() ?>
                 <button type="submit"

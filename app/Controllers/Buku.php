@@ -6,11 +6,20 @@ class Buku extends BaseController
 {
     // ADMIN
     public function index(): string
-    {
-        $bukuModel = new \App\Models\Buku();
-        $data['buku'] = $bukuModel->getBukuLengkap();
-        return view('admin/buku/kelola_buku', $data);
-    }
+{
+    $bukuModel = new \App\Models\Buku();
+
+    $penulis  = $this->request->getGet('penulis');
+    $penerbit = $this->request->getGet('penerbit');
+
+    $data = [
+        'buku'     => $bukuModel->getBukuLengkap($penulis, $penerbit),
+        'penulis'  => (new \App\Models\Penulis())->findAll(),
+        'penerbit' => (new \App\Models\Penerbit())->findAll(),
+    ];
+
+    return view('admin/buku/kelola_buku', $data);
+}
 
     public function create()
     {
@@ -40,12 +49,13 @@ class Buku extends BaseController
     }
 
     $bukuModel->save([
+    'ISBN'         => $this->request->getPost('ISBN'),
     'judul'        => $this->request->getPost('judul'),
     'kategori_id'  => $this->request->getPost('kategori_id'),
     'id_penulis'   => $this->request->getPost('id_penulis'),
     'id_penerbit'  => $this->request->getPost('id_penerbit'),
     'tahun_terbit' => $this->request->getPost('tahun_terbit'),
-    'cover'        => $coverName,
+    'stok'         => $this->request->getPost('stok'),
 ]);
 
     return redirect()->to('kelola_buku');
@@ -80,6 +90,41 @@ class Buku extends BaseController
 
     return redirect()->to('/kelola_kategori')->with('success', 'Kategori berhasil disimpan');
 }
+
+public function editKategori($id)
+{
+    $kategoriModel = new \App\Models\Kategori();
+
+    $data['kategori'] = $kategoriModel->find($id);
+
+    return view('admin/buku/edit_kategori', $data);
+}
+
+public function updateKategori($id)
+{
+    $kategoriModel = new \App\Models\Kategori();
+
+    $namaKategori = $this->request->getPost('nama_kategori');
+
+    if (empty($namaKategori)) {
+        return redirect()->back()->with('error', 'Nama kategori tidak boleh kosong');
+    }
+
+    $kategoriModel->update($id, [
+        'nama_kategori' => $namaKategori
+    ]);
+
+    return redirect()->to('/kelola_kategori')->with('success', 'Kategori berhasil diupdate');
+}
+
+public function deleteKategori($id)
+{
+    $kategoriModel = new \App\Models\Kategori();
+
+    $kategoriModel->delete($id);
+
+    return redirect()->to('/kelola_kategori')->with('success', 'Kategori berhasil dihapus');
+}
 // ADMIN END
 
 public function daftarBuku()
@@ -110,16 +155,12 @@ public function update($id)
 
     $buku = $bukuModel->find($id);
 
-    $file = $this->request->getFile('cover');
-    $coverName = $buku['cover'];
-
     $bukuModel->update($id, [
     'judul'        => $this->request->getPost('judul'),
     'kategori_id'  => $this->request->getPost('kategori_id'),
     'id_penulis'   => $this->request->getPost('id_penulis'),
     'id_penerbit'  => $this->request->getPost('id_penerbit'),
     'tahun_terbit' => $this->request->getPost('tahun_terbit'),
-    'cover'        => $coverName,
 ]);
 
     return redirect()->to('/kelola_buku');
@@ -129,20 +170,24 @@ public function delete($id)
 {
     $bukuModel = new \App\Models\Buku();
 
-    // ambil data dulu (buat hapus cover kalau ada)
+  
     $buku = $bukuModel->find($id);
 
-    if ($buku) {
-        // hapus file cover kalau ada
-        if ($buku['cover'] && file_exists(FCPATH . 'uploads/' . $buku['cover'])) {
-            unlink(FCPATH . 'uploads/' . $buku['cover']);
-        }
-
-        // hapus data dari database
-        $bukuModel->delete($id);
-    }
+    $bukuModel->delete($id);
 
     return redirect()->to('/kelola_buku')->with('success', 'Buku berhasil dihapus');
 }
 
+public function search()
+{
+    $keyword = $this->request->getGet('keyword');
+
+    if (!empty($keyword)) {
+        return redirect()->to('/kelola_buku?keyword=' . urlencode($keyword));
+    }
+
+    return redirect()->to('/kelola_buku');
 }
+
+}
+

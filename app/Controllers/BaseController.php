@@ -43,6 +43,17 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
         // $this->session = service('session');
+
+       $this->session = service('session');
+
+    // CI4 Shield biasanya simpan user di auth
+
+        $this->user = auth()->user();
+
+    // kirim ke semua view
+    service('renderer')->setData([
+        'user' => $this->user
+    ]);
         
     }
 }

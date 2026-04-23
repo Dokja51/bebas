@@ -21,6 +21,43 @@
                   </form>
 </div>
 </div>
+
+<form method="get" action="/kelola_buku" class="mb-4 flex flex-wrap gap-3">
+
+  <!-- Filter Penulis -->
+  <select name="penulis"
+  class="h-10 rounded-lg border border-gray-700 bg-gray-900 px-3 text-sm text-white">
+    <option value="">Semua Penulis</option>
+    <?php foreach ($penulis as $p): ?>
+      <option value="<?= $p['id_penulis']; ?>"
+        <?= isset($_GET['penulis']) && $_GET['penulis'] == $p['id_penulis'] ? 'selected' : '' ?>>
+        <?= $p['nama_penulis']; ?>
+      </option>
+    <?php endforeach; ?>
+  </select>
+
+  <!-- Filter Penerbit -->
+<select name="penerbit"
+  class="h-10 rounded-lg border border-gray-700 bg-gray-900 px-3 text-sm text-white">    <option value="">Semua Penerbit</option>
+    <?php foreach ($penerbit as $p): ?>
+      <option value="<?= $p['id_penerbit']; ?>"
+        <?= isset($_GET['penerbit']) && $_GET['penerbit'] == $p['id_penerbit'] ? 'selected' : '' ?>>
+        <?= $p['nama_penerbit']; ?>
+      </option>
+    <?php endforeach; ?>
+  </select>
+
+  <button type="submit"
+    class="h-10 rounded-lg bg-gray-800 px-4 text-white text-sm hover:bg-gray-900">
+    Filter
+  </button>
+
+  <a href="/kelola_buku"
+    class="h-10 rounded-lg border px-4 flex items-center text-sm hover:bg-gray-100 dark:hover:bg-gray-800">
+    Reset
+  </a>
+
+</form>
             <!-- Breadcrumb End -->
 
             <div class="space-y-5 sm:space-y-6">
@@ -48,6 +85,15 @@
       <!-- table header start -->
       <thead>
         <tr class="border-b border-gray-100 dark:border-gray-800">
+          <th class="px-5 py-3 sm:px-6">
+            <div class="flex items-center">
+              <p
+                class="font-medium text-gray-500 text-theme-xs dark:text-gray-400"
+              >
+                ISBN
+              </p>
+            </div>
+          </th>
           <th class="px-5 py-3 sm:px-6">
             <div class="flex items-center">
               <p
@@ -126,10 +172,17 @@
                   <span
                     class="block font-medium text-gray-500 text-theme-sm dark:text-gray-400"
                   >
-                    <?= $b['nama_kategori']; ?>
+                    <?= $b['ISBN']; ?>
                   </span>
                 </div>
               </div>
+            </div>
+          </td>
+          <td class="px-5 py-4 sm:px-6">
+            <div class="flex items-center">
+              <p class="text-gray-500 text-theme-sm dark:text-gray-400">
+                <?= $b['nama_kategori']; ?>
+              </p>
             </div>
           </td>
           <td class="px-5 py-4 sm:px-6">

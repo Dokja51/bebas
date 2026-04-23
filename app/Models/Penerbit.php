@@ -6,7 +6,12 @@ use CodeIgniter\Model;
 
 class Penerbit extends Model
 {
-    protected $table = 'penerbit'; // ⚠️ sesuaikan dengan nama tabel di DB
-    protected $primaryKey = 'id_penerbit';
-    protected $allowedFields = ['nama_penerbit'];
+    protected $table = 'penerbit';
+    protected $primaryKey = 'id';
+
+    protected $allowedFields = [
+        'nama_penerbit',
+        'alamat',
+        'telepon'
+    ];
 }

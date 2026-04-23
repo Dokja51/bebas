@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2026 at 01:08 AM
+-- Generation Time: Apr 23, 2026 at 09:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,23 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `serius`
+-- Database: `ukk_faathir`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `anggota`
---
-
-CREATE TABLE `anggota` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `nis` varchar(20) DEFAULT NULL,
-  `kelas` varchar(50) DEFAULT NULL,
-  `alamat` text DEFAULT NULL,
-  `no_hp` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -54,9 +39,10 @@ CREATE TABLE `auth_groups_users` (
 --
 
 INSERT INTO `auth_groups_users` (`id`, `user_id`, `group`, `created_at`) VALUES
-(1, 1, 'user', '2026-04-06 08:49:29'),
-(3, 2, 'user', '2026-04-07 03:26:42'),
-(4, 2, 'admin', '2026-04-07 05:26:58');
+(7, 5, 'admin', '2026-04-23 01:01:25'),
+(8, 6, 'user', '2026-04-23 04:26:19'),
+(9, 7, 'user', '2026-04-23 06:57:47'),
+(10, 8, 'user', '2026-04-23 07:12:56');
 
 -- --------------------------------------------------------
 
@@ -84,8 +70,10 @@ CREATE TABLE `auth_identities` (
 --
 
 INSERT INTO `auth_identities` (`id`, `user_id`, `type`, `name`, `secret`, `secret2`, `expires`, `extra`, `force_reset`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'email_password', NULL, 'untukowo@gmail.com', '$2y$12$Olggw6Yj7xVjX1VIH.gLx..X5tLYtXVbXKL/kcMQOkE7.Kt0A0UJC', NULL, NULL, 0, '2026-04-08 14:49:28', '2026-04-06 08:49:29', '2026-04-08 14:49:28'),
-(2, 2, 'email_password', NULL, 'faathirsiap@gmail.com', '$2y$12$sbAdZRK8kUfDXejtrfw4h.CVd4Q1ESa.aQixd8dECBmSbBAnod5GO', NULL, NULL, 0, NULL, '2026-04-07 03:26:42', '2026-04-07 03:26:42');
+(5, 5, 'email_password', NULL, 'faathirsiap@gmail.com', '$2y$12$CyVI/eRACgKB392rVBxlFefe4Yg4fEu6bhGvdgQuRack/TaaQl/n2', NULL, NULL, 0, '2026-04-23 07:14:35', '2026-04-23 01:01:25', '2026-04-23 07:14:35'),
+(6, 6, 'email_password', NULL, 'untukowo6@gmail.com', '$2y$12$Y/injpAMpG2jrOJT3DjOxOveTdFgdFkO690dWjpNDXEMY7fZrZZSi', NULL, NULL, 0, NULL, '2026-04-23 04:26:19', '2026-04-23 04:26:19'),
+(7, 7, 'email_password', NULL, 'untukowo2@gmail.com', '$2y$12$6jjOlO2SWnVbJbEq0j62ru02tKM191QE9oAIizKBWEwVOIEXldm9a', NULL, NULL, 0, NULL, '2026-04-23 06:57:47', '2026-04-23 06:57:47'),
+(15, 8, 'email_password', NULL, 'untukowo@gmail.com', '$2y$12$AZ3nqplZNQmetiAHxtK5jOCJeh2Q/jaCrU5ZFFMMZk2aCs0I2d2E.', NULL, NULL, 0, NULL, '2026-04-23 07:12:55', '2026-04-23 07:12:55');
 
 -- --------------------------------------------------------
 
@@ -109,13 +97,10 @@ CREATE TABLE `auth_logins` (
 --
 
 INSERT INTO `auth_logins` (`id`, `ip_address`, `user_agent`, `id_type`, `identifier`, `user_id`, `date`, `success`) VALUES
-(1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmail.com', 1, '2026-04-06 11:09:50', 1),
-(2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmail.com', 1, '2026-04-07 06:05:45', 1),
-(3, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmail.com', 1, '2026-04-07 14:41:46', 1),
-(4, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmail.com', 1, '2026-04-07 14:43:54', 1),
-(5, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmal.com', NULL, '2026-04-07 14:44:36', 0),
-(6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmail.com', 1, '2026-04-07 14:45:12', 1),
-(7, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'untukowo@gmail.com', 1, '2026-04-08 14:49:28', 1);
+(15, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'faathirsiap@gmail.com', NULL, '2026-04-23 00:51:36', 0),
+(16, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'faathirsiap@gmail.com', 5, '2026-04-23 01:31:52', 1),
+(17, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'faathirsiap@gmail.com', 5, '2026-04-23 07:05:55', 1),
+(18, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:149.0) Gecko/20100101 Firefox/149.0', 'email_password', 'faathirsiap@gmail.com', 5, '2026-04-23 07:14:35', 1);
 
 -- --------------------------------------------------------
 
@@ -172,21 +157,23 @@ CREATE TABLE `auth_token_logins` (
 CREATE TABLE `buku` (
   `id` int(11) NOT NULL,
   `kategori_id` int(11) DEFAULT NULL,
-  `kode_buku` varchar(20) DEFAULT NULL,
+  `ISBN` varchar(20) DEFAULT NULL,
   `judul` varchar(150) DEFAULT NULL,
-  `penulis` varchar(100) DEFAULT NULL,
-  `penerbit` varchar(100) DEFAULT NULL,
   `tahun_terbit` year(4) DEFAULT NULL,
   `stok` int(11) DEFAULT 0,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `cover` varchar(255) DEFAULT NULL,
+  `id_penulis` int(11) DEFAULT NULL,
+  `id_penerbit` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `buku`
 --
 
-INSERT INTO `buku` (`id`, `kategori_id`, `kode_buku`, `judul`, `penulis`, `penerbit`, `tahun_terbit`, `stok`, `created_at`) VALUES
-(3, 1, 'BK003', 'Negeri 5 Menara', 'Ahmad Fuadi', 'Gramedia', '2009', 4, '2026-04-07 14:02:39');
+INSERT INTO `buku` (`id`, `kategori_id`, `ISBN`, `judul`, `tahun_terbit`, `stok`, `created_at`, `cover`, `id_penulis`, `id_penerbit`) VALUES
+(3, 1, 'BK003', 'sdsadasdas', '2012', 3, '2026-04-07 14:02:39', NULL, 1, 1),
+(29, 1, 'dasdsadas', 'dasdasd', '2012', 2332, '2026-04-23 07:30:17', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -205,7 +192,10 @@ CREATE TABLE `kategori` (
 --
 
 INSERT INTO `kategori` (`id`, `nama_kategori`, `created_at`) VALUES
-(1, 'Novel', '2026-04-07 14:02:28');
+(1, 'Novel', '2026-04-07 14:02:28'),
+(2, 'Sejarah', '2026-04-09 03:52:11'),
+(4, 'Pelajaran', '2026-04-09 06:11:32'),
+(6, 'UJANG', '2026-04-23 04:50:43');
 
 -- --------------------------------------------------------
 
@@ -235,6 +225,46 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `penerbit`
+--
+
+CREATE TABLE `penerbit` (
+  `id_penerbit` int(11) NOT NULL,
+  `nama_penerbit` varchar(255) NOT NULL,
+  `alamat` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penerbit`
+--
+
+INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`, `alamat`, `created_at`) VALUES
+(1, 'gramedia', 'bebas', '2026-04-23 01:37:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penulis`
+--
+
+CREATE TABLE `penulis` (
+  `id_penulis` int(11) NOT NULL,
+  `nama_penulis` varchar(255) NOT NULL,
+  `bio` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penulis`
+--
+
+INSERT INTO `penulis` (`id_penulis`, `nama_penulis`, `bio`, `created_at`) VALUES
+(1, 'ujangkedu', 'saya ujang', '2026-04-23 01:32:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `settings`
 --
 
@@ -257,12 +287,20 @@ CREATE TABLE `settings` (
 
 CREATE TABLE `transaksi` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
   `buku_id` int(11) DEFAULT NULL,
   `tanggal_pinjam` date DEFAULT NULL,
   `tanggal_kembali` date DEFAULT NULL,
   `status` enum('dipinjam','dikembalikan') DEFAULT 'dipinjam'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id`, `user_id`, `buku_id`, `tanggal_pinjam`, `tanggal_kembali`, `status`) VALUES
+(8, 5, 3, '2026-04-23', '2026-04-23', 'dikembalikan'),
+(9, 5, 29, '2026-04-23', NULL, 'dipinjam');
 
 -- --------------------------------------------------------
 
@@ -287,34 +325,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `status`, `status_message`, `active`, `last_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'dsadadsad', NULL, NULL, 1, NULL, '2026-04-06 08:49:29', '2026-04-06 08:49:29', NULL),
-(2, 'ujg', NULL, NULL, 1, NULL, '2026-04-07 03:26:42', '2026-04-07 03:26:42', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `usersyyy`
---
-
-CREATE TABLE `usersyyy` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `role` enum('admin','anggota') DEFAULT 'anggota',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(5, 'faathir', NULL, NULL, 1, NULL, '2026-04-23 01:01:25', '2026-04-23 01:01:26', NULL),
+(6, 'ujangkdu', NULL, NULL, 0, NULL, '2026-04-23 04:26:19', '2026-04-23 04:26:19', NULL),
+(7, 'fadhil', NULL, NULL, 1, NULL, '2026-04-23 06:57:46', '2026-04-23 07:05:34', NULL),
+(8, 'babibu', NULL, NULL, 1, NULL, '2026-04-23 07:12:55', '2026-04-23 07:13:17', NULL);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `anggota`
---
-ALTER TABLE `anggota`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `auth_groups_users`
@@ -367,8 +385,10 @@ ALTER TABLE `auth_token_logins`
 --
 ALTER TABLE `buku`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `kode_buku` (`kode_buku`),
-  ADD KEY `kategori_id` (`kategori_id`);
+  ADD UNIQUE KEY `kode_buku` (`ISBN`),
+  ADD KEY `kategori_id` (`kategori_id`),
+  ADD KEY `fk_pengarang` (`id_penulis`),
+  ADD KEY `fk_penerbit` (`id_penerbit`);
 
 --
 -- Indexes for table `kategori`
@@ -381,6 +401,18 @@ ALTER TABLE `kategori`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `penerbit`
+--
+ALTER TABLE `penerbit`
+  ADD PRIMARY KEY (`id_penerbit`);
+
+--
+-- Indexes for table `penulis`
+--
+ALTER TABLE `penulis`
+  ADD PRIMARY KEY (`id_penulis`);
 
 --
 -- Indexes for table `settings`
@@ -404,39 +436,26 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Indexes for table `usersyyy`
---
-ALTER TABLE `usersyyy`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `anggota`
---
-ALTER TABLE `anggota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `auth_groups_users`
 --
 ALTER TABLE `auth_groups_users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `auth_identities`
 --
 ALTER TABLE `auth_identities`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions_users`
@@ -460,19 +479,31 @@ ALTER TABLE `auth_token_logins`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `penerbit`
+--
+ALTER TABLE `penerbit`
+  MODIFY `id_penerbit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `penulis`
+--
+ALTER TABLE `penulis`
+  MODIFY `id_penulis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -484,29 +515,17 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `usersyyy`
---
-ALTER TABLE `usersyyy`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `anggota`
---
-ALTER TABLE `anggota`
-  ADD CONSTRAINT `anggota_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usersyyy` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `auth_groups_users`
@@ -536,13 +555,15 @@ ALTER TABLE `auth_remember_tokens`
 -- Constraints for table `buku`
 --
 ALTER TABLE `buku`
-  ADD CONSTRAINT `buku_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `buku_ibfk_1` FOREIGN KEY (`kategori_id`) REFERENCES `kategori` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_penerbit` FOREIGN KEY (`id_penerbit`) REFERENCES `penerbit` (`id_penerbit`) ON DELETE SET NULL,
+  ADD CONSTRAINT `fk_pengarang` FOREIGN KEY (`id_penulis`) REFERENCES `penulis` (`id_penulis`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `usersyyy` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_transaksi_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`buku_id`) REFERENCES `buku` (`id`) ON DELETE CASCADE;
 COMMIT;
 

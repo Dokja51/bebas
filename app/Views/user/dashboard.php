@@ -2,10 +2,11 @@
 <?= $this->section('content'); ?>
         <!-- ===== Main Content Start ===== -->
         <main>
-<h3
+
+  <h3
                     class="text-base font-medium text-gray-800 dark:text-white/90"
                   >
-                    Selamat Datang di Dashboard Admin DIGILIB
+                    Selamat Datang di Dashboard DIGILIB
                   </h3>
         </main>
         <!-- ===== Main Content End ===== -->
