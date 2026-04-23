@@ -15,11 +15,11 @@ class User extends BaseController
     public function index()
     {
         $users = $this->db->table('users u')
-            ->select('u.id, ai.secret as email, gu.group')
-            ->join('auth_identities ai', 'ai.user_id = u.id AND ai.type = "email_password"', 'left')
-            ->join('auth_groups_users gu', 'gu.user_id = u.id', 'left')
-            ->get()
-            ->getResultArray();
+        ->select('u.id, u.username, ai.secret as email, gu.group')
+        ->join('auth_identities ai', 'ai.user_id = u.id AND ai.type = "email_password"', 'left')
+        ->join('auth_groups_users gu', 'gu.user_id = u.id', 'left')
+        ->get()
+        ->getResultArray();
 
         return view('admin/kelola_anggota/kelola_user', [
             'users' => $users
@@ -54,12 +54,12 @@ class User extends BaseController
     public function edit($id)
     {
         $user = $this->db->table('users u')
-            ->select('u.id, ai.secret as email, gu.group')
-            ->join('auth_identities ai', 'ai.user_id = u.id AND ai.type = "email_password"', 'left')
-            ->join('auth_groups_users gu', 'gu.user_id = u.id', 'left')
-            ->where('u.id', $id)
-            ->get()
-            ->getRowArray();
+        ->select('u.id, u.username, ai.secret as email, gu.group')
+        ->join('auth_identities ai', 'ai.user_id = u.id AND ai.type = "email_password"', 'left')
+        ->join('auth_groups_users gu', 'gu.user_id = u.id', 'left')
+        ->where('u.id', $id)
+        ->get()
+        ->getRowArray();
 
         return view('admin/kelola_anggota/edit_user', [
             'user' => $user

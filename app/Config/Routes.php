@@ -13,8 +13,9 @@ $routes->group('', ['filter' => 'admin'], function($routes) {
 $routes->get('/kelola_buku', 'Buku::index');
 $routes->get('/create_buku', 'Buku::create');
 $routes->post('/store_buku', 'Buku::store');
-$routes->get('/edit_buku/(:num)', 'Buku::edit/$1');
-$routes->post('buku/delete/(:num)', 'Buku::delete/$1');
+$routes->get('edit_buku/(:num)', 'Buku::edit/$1');
+$routes->post('update_buku/(:num)', 'Buku::update/$1');
+$routes->get('delete/(:num)', 'Buku::delete/$1');
 // kategori
 $routes->get('/kelola_kategori', 'Buku::kategori');
 $routes->get('/create_kategori', 'Buku::createKategori');

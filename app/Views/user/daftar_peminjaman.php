@@ -155,14 +155,14 @@
           <td class="px-5 py-4 sm:px-6">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                <?= $p['penulis']; ?>
+                <?= $p['nama_penulis']; ?>
               </p>
             </div>
           </td>
           <td class="px-5 py-4 sm:px-6">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                <?= $p['penerbit']; ?>
+                <?= $p['nama_penerbit']; ?>
               </p>
             </div>
           </td>

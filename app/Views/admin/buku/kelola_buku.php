@@ -142,14 +142,14 @@
           <td class="px-5 py-4 sm:px-6">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                <?= $b['penulis']; ?>
+                <?= $b['nama_penulis']; ?>
               </p>
             </div>
           </td>
           <td class="px-5 py-4 sm:px-6">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-                <?= $b['penerbit']; ?>
+                <?= $b['nama_penerbit']; ?>
               </p>
             </div>
           </td>
@@ -170,7 +170,7 @@
           <td class="px-5 py-4 sm:px-6">
             <div class="flex items-center">
               <p class="text-gray-500 text-theme-sm dark:text-gray-400">
-            <button
+            <a href="/edit_buku/<?= $b['id']; ?>"
                   class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs ring-1 ring-gray-300 transition hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03]"
                 >
                   <svg
@@ -189,7 +189,7 @@
                     />
                   </svg>
                   edit
-                </button>
+             </a>
                 <form action="/buku/delete/<?= $b['id']; ?>" method="post" onsubmit="return confirm('Yakin hapus buku ini?')">
                 <button
                   class="inline-flex items-center gap-2 rounded-lg bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs ring-1 ring-gray-300 transition hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-400 dark:ring-gray-700 dark:hover:bg-white/[0.03]"

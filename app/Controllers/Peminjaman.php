@@ -11,8 +11,10 @@ class Peminjaman extends BaseController
 
     // Ambil semua peminjaman user, join dengan tabel buku & kategori
     $data['peminjaman'] = $peminjamanModel
-    ->select('transaksi.*, buku.judul, buku.penulis, buku.penerbit, buku.tahun_terbit, kategori.nama_kategori')
+    ->select('transaksi.*, buku.judul, penulis.nama_penulis, penerbit.nama_penerbit, buku.tahun_terbit, kategori.nama_kategori')
     ->join('buku', 'buku.id = transaksi.buku_id')
+    ->join('penulis', 'penulis.id_penulis = buku.id_penulis')
+    ->join('penerbit', 'penerbit.id_penerbit = buku.id_penerbit')
     ->join('kategori', 'kategori.id = buku.kategori_id')
     ->where('transaksi.user_id', $user->id)
     ->where('transaksi.status', 'dipinjam')

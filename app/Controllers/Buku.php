@@ -8,17 +8,21 @@ class Buku extends BaseController
     public function index(): string
     {
         $bukuModel = new \App\Models\Buku();
-        $data['buku'] = $bukuModel->getBukuWithKategori();
+        $data['buku'] = $bukuModel->getBukuLengkap();
         return view('admin/buku/kelola_buku', $data);
     }
 
     public function create()
     {
         $kategoriModel = new \App\Models\Kategori();
-        $kategori = $kategoriModel->findAll();
-        return view('admin/buku/create_buku', [
-        'kategori' => $kategori
-    ]);
+        $penulisModel = new \App\Models\Penulis();
+        $penerbitModel = new \App\Models\Penerbit();
+        $data = [
+        'penulis' => $penulisModel->findAll(),
+        'penerbit' => $penerbitModel->findAll(),
+        'kategori' => $kategoriModel->findAll(),
+    ];
+        return view('admin/buku/create_buku', $data);
     }
 
    public function store()
@@ -29,20 +33,20 @@ class Buku extends BaseController
 
     if ($file && $file->isValid() && !$file->hasMoved()) {
         $newName = $file->getRandomName();
-        $file->move(WRITEPATH . '../public/uploads', $newName);
+        $file->move(FCPATH . 'uploads', $newName);
         $coverName = $newName;
     } else {
         $coverName = null;
     }
 
     $bukuModel->save([
-        'judul'        => $this->request->getPost('judul'),
-        'kategori_id'  => $this->request->getPost('kategori_id'),
-        'penulis'      => $this->request->getPost('penulis'),
-        'penerbit'     => $this->request->getPost('penerbit'),
-        'tahun_terbit' => $this->request->getPost('tahun_terbit'),
-        'cover'        => $coverName,
-    ]);
+    'judul'        => $this->request->getPost('judul'),
+    'kategori_id'  => $this->request->getPost('kategori_id'),
+    'id_penulis'   => $this->request->getPost('id_penulis'),
+    'id_penerbit'  => $this->request->getPost('id_penerbit'),
+    'tahun_terbit' => $this->request->getPost('tahun_terbit'),
+    'cover'        => $coverName,
+]);
 
     return redirect()->to('kelola_buku');
 }
@@ -81,7 +85,7 @@ class Buku extends BaseController
 public function daftarBuku()
     {
         $bukuModel = new \App\Models\Buku();
-        $data['buku'] = $bukuModel->getBukuWithKategori();
+        $data['buku'] = $bukuModel->getBukuLengkap();
         return view('user/daftar_buku', $data);
     }
 
@@ -89,9 +93,13 @@ public function daftarBuku()
 {
     $bukuModel = new \App\Models\Buku();
     $kategoriModel = new \App\Models\Kategori();
+    $penulisModel = new \App\Models\Penulis();
+    $penerbitModel = new \App\Models\Penerbit();
 
     $data['buku'] = $bukuModel->find($id);
     $data['kategori'] = $kategoriModel->findAll();
+    $data['penulis'] = $penulisModel->findAll();
+    $data['penerbit'] = $penerbitModel->findAll();
 
     return view('admin/buku/edit_buku', $data);
 }
@@ -105,26 +113,14 @@ public function update($id)
     $file = $this->request->getFile('cover');
     $coverName = $buku['cover'];
 
-    if ($file && $file->isValid() && !$file->hasMoved()) {
-
-        // hapus cover lama
-        if ($buku['cover'] && file_exists(FCPATH . 'uploads/' . $buku['cover'])) {
-            unlink(FCPATH . 'uploads/' . $buku['cover']);
-        }
-
-        $newName = $file->getRandomName();
-        $file->move(FCPATH . 'uploads', $newName);
-        $coverName = $newName;
-    }
-
     $bukuModel->update($id, [
-        'judul'        => $this->request->getPost('judul'),
-        'kategori_id'  => $this->request->getPost('kategori_id'),
-        'penulis'      => $this->request->getPost('penulis'),
-        'penerbit'     => $this->request->getPost('penerbit'),
-        'tahun_terbit' => $this->request->getPost('tahun_terbit'),
-        'cover'        => $coverName,
-    ]);
+    'judul'        => $this->request->getPost('judul'),
+    'kategori_id'  => $this->request->getPost('kategori_id'),
+    'id_penulis'   => $this->request->getPost('id_penulis'),
+    'id_penerbit'  => $this->request->getPost('id_penerbit'),
+    'tahun_terbit' => $this->request->getPost('tahun_terbit'),
+    'cover'        => $coverName,
+]);
 
     return redirect()->to('/kelola_buku');
 }

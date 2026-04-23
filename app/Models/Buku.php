@@ -11,39 +11,41 @@ class Buku extends Model
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
 
-    protected $protectFields    = true;
     protected $allowedFields    = [
         'kode_buku',
         'kategori_id',
+        'id_penulis',
+        'id_penerbit',
         'judul',
-        'penulis',
-        'penerbit',
         'tahun_terbit',
         'stok',
         'cover'
     ];
 
-    protected $useTimestamps = false;
-    protected $createdField  = 'created_at';
 
-    public function getBukuWithKategori()
+    public function getBukuLengkap()
     {
-        return $this->db->table('buku')
-            ->select('buku.*, kategori.nama_kategori')
+        return $this->select('buku.*, 
+                              kategori.nama_kategori, 
+                              penulis.nama_penulis, 
+                              penerbit.nama_penerbit')
             ->join('kategori', 'kategori.id = buku.kategori_id', 'left')
-            ->get()
-            ->getResultArray();
+            ->join('penulis', 'penulis.id_penulis = buku.id_penulis', 'left')
+            ->join('penerbit', 'penerbit.id_penerbit = buku.id_penerbit', 'left')
+            ->findAll();
     }
 
+  
     public function getDetail($id)
     {
-        return $this->db->table('buku')
-            ->select('buku.*, kategori.nama_kategori')
+        return $this->select('buku.*, 
+                              kategori.nama_kategori, 
+                              penulis.nama_penulis, 
+                              penerbit.nama_penerbit')
             ->join('kategori', 'kategori.id = buku.kategori_id', 'left')
+            ->join('penulis', 'penulis.id_penulis = buku.id_penulis', 'left')
+            ->join('penerbit', 'penerbit.id_penerbit = buku.id_penerbit', 'left')
             ->where('buku.id', $id)
-            ->get()
-            ->getRowArray();
+            ->first();
     }
-
-    
 }
